@@ -1,4 +1,5 @@
 const GameBoard = require('./gameboard')
+const createShip = require('./ship')
 
 const testGameboard = new GameBoard()
 
@@ -7,9 +8,25 @@ test('Testing that gameboard is created properly', () => {
     for(let x = 0; x < 10; x++) {
         for(let y = 0; y < 10; y++) {
             expect(testGameboard.board.get(`${x}, ${y}`)).toMatchObject({
-                hasShip: false,
+                hasShip: null,
                 isHit: false
             })
         }
     }
+})
+
+test('Testing that the gameboard can add a ship', () => {
+    testGameboard.addShip(createShip(3), [0,0], 0)
+    expect(testGameboard.board.get("0, 0")).toMatchObject({
+        hasShip: {length: 3, hits: 0, sunk: false, },
+        isHit: false
+    })
+    expect(testGameboard.board.get("1, 0")).toMatchObject({
+        hasShip: {length: 3, hits: 0, sunk: false, },
+        isHit: false
+    })
+    expect(testGameboard.board.get("2, 0")).toMatchObject({
+        hasShip: {length: 3, hits: 0, sunk: false, },
+        isHit: false
+    })
 })

@@ -18,6 +18,5 @@ function createShip(size) {
 
 
 const testShip = createShip(3)
-console.log(testShip)
 
 module.exports = createShip
