@@ -24,6 +24,7 @@ test('Testing if the hit function works properly', () => {
 })
 
 test('Testing if the isSunk function works properly', () => {
+    expect(testShip.isSunk()).toBeFalsy()
     testShip.hit()
     testShip.hit()
     testShip.hit()

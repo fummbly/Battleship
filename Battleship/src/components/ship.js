@@ -5,6 +5,7 @@ function createShip(size) {
         sunk: false,
         hit() {
             this.hits++;
+            this.isSunk()
         },
         isSunk() {
             if(this.hits >= this.length) {

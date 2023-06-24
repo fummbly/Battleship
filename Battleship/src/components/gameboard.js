@@ -20,7 +20,9 @@ class GameBoard {
 
     addShip(ship, cords, orientation) {
         
-        if(this.board.get(`${cords[0]}, ${cords[1]}`) !== null) return;
+        if(this.board.get(`${cords[0]}, ${cords[1]}`).hasShip !== null) return;
+        if(this.#checkCords(cords)) return
+        if(orientation < 0 || orientation > 1) return
         for(let i = 0; i < ship.length; i++) {
             if(orientation === 0) {
                 this.board.get(`${cords[0] + i}, ${cords[1]}`).hasShip = ship
@@ -33,6 +35,33 @@ class GameBoard {
                 return
             }
         } 
+    }
+
+    receiveAttack(cords) {
+        if(this.#checkCords(cords)) return;
+        const cell = this.board.get(`${cords[0]}, ${cords[1]}`)
+        if(cell.isHit) return;
+        if(cell.hasShip) cell.hasShip.hit()
+        cell.isHit = true
+        return;
+    }
+
+    allShipsSunk() {
+        for(const value of this.board.values()) {
+            if(value.hasShip) {
+                if(!value.hasShip.sunk) return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    #checkCords(cords) {
+        if(cords[0] < 0 || cords[0] > 9) return true;
+        if(cords[1] < 0 || cords[1] > 9) return true;
+
+        return false;
     }
 }
 
