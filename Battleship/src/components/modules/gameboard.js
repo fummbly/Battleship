@@ -38,12 +38,12 @@ class GameBoard {
     }
 
     receiveAttack(cords) {
-        if(this.#checkCords(cords)) return;
+        if(this.#checkCords(cords)) return false;
         const cell = this.board.get(`${cords[0]}, ${cords[1]}`)
-        if(cell.isHit) return;
+        if(cell.isHit) return false;
         if(cell.hasShip) cell.hasShip.hit()
         cell.isHit = true
-        return;
+        return true;
     }
 
     allShipsSunk() {
@@ -53,6 +53,11 @@ class GameBoard {
             }
         }
 
+        return true;
+    }
+
+    testAttack(cords) {
+        if(this.board.get(`${cords[0]}, ${cords[1]}`).isHit) return false;
         return true;
     }
 
