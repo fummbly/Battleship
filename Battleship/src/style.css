@@ -60,6 +60,10 @@ h1 {
   background-color: #646cff;
 }
 
+.miss {
+  background-color: #f9f9f9;
+}
+
 .hit {
   background-color: red;
 }
