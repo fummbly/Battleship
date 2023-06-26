@@ -18,6 +18,4 @@ function createShip(size) {
 }
 
 
-const testShip = createShip(3)
-
-module.exports = createShip
+export default createShip

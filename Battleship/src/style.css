@@ -43,6 +43,27 @@ h1 {
   text-align: center;
 }
 
+.board-div{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 1rem;
+}
+
+.cell {
+  aspect-ratio: 1;
+  background-color: #3f3f3f;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.ship {
+  background-color: #646cff;
+}
+
+.hit {
+  background-color: red;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

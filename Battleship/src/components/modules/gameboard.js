@@ -29,7 +29,7 @@ class GameBoard {
 
             }
             else if (orientation === 1) {
-                this.board.get(`${cords[0]}, ${cords[1]}`).hasShip = ship
+                this.board.get(`${cords[0]}, ${cords[1] + i}`).hasShip = ship
             }
             else {
                 return
@@ -70,4 +70,5 @@ class GameBoard {
     }
 }
 
-module.exports = GameBoard
+
+export default GameBoard
