@@ -1,13 +1,11 @@
 class UI {
-    static renderGameboard(board) {
+    static renderPlayerGameboard(board) {
         const boardDiv = document.createElement('div')
         boardDiv.classList.add('board-div')
+        boardDiv.id = "player-board"
+        boardDiv.classList.add('show')
         for(let key of board.board.keys()) {
             const cell = document.createElement('div')
-            cell.addEventListener('click', () => {
-                board.receiveAttack([cell.dataset.x, cell.dataset.y])
-                this.renderCell(cell, key, board)
-            })
             this.renderCell(cell, key, board)
             
             boardDiv.appendChild(cell)
@@ -15,6 +13,20 @@ class UI {
 
         return boardDiv
 
+    }
+
+    static RenderComputerGameboard(board) {
+        const boardDiv = document.createElement('div')
+        boardDiv.classList.add('board-div')
+        boardDiv.id = "computer-board"
+        for(let key of board.board.keys()) {
+            const cell = document.createElement('div')
+            this.renderCell(cell, key, board)
+            
+            boardDiv.appendChild(cell)
+        }
+
+        return boardDiv
     }
 
 

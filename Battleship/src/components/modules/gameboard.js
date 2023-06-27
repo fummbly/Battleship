@@ -18,17 +18,15 @@ class GameBoard {
         }
     }
 
-    addShip(ship, cords, orientation) {
-        
-        if(this.board.get(`${cords[0]}, ${cords[1]}`).hasShip !== null) return;
+    addShip(ship, cords) {
         if(this.#checkCords(cords)) return
-        if(orientation < 0 || orientation > 1) return
+        if(this.#checkShips(cords, ship)) return
         for(let i = 0; i < ship.length; i++) {
-            if(orientation === 0) {
+            if(ship.orientation === 0) {
                 this.board.get(`${cords[0] + i}, ${cords[1]}`).hasShip = ship
 
             }
-            else if (orientation === 1) {
+            else if (ship.orientation === 1) {
                 this.board.get(`${cords[0]}, ${cords[1] + i}`).hasShip = ship
             }
             else {
@@ -66,6 +64,20 @@ class GameBoard {
         if(cords[0] < 0 || cords[0] > 9) return true;
         if(cords[1] < 0 || cords[1] > 9) return true;
 
+        return false;
+    }
+
+    #checkShips(cords, ship) {
+        for(let i = 0; i < ship.length; i++) {
+            if(ship.orientation === 0) {
+                if(cords[0] + i > 9) return true
+                if(this.board.get(`${cords[0] + i}, ${cords[1]}`).hasShip) return true; 
+            } else {
+                if(cords[1] + i > 9) return true;
+                if(this.board.get(`${cords[0]}, ${cords[1] + i}`).hasShip)return true;
+            }
+
+        }
         return false;
     }
 }

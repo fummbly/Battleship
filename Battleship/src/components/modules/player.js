@@ -1,9 +1,13 @@
 class Player {
 
+    constructor(name) {
+        this.name = name
+    }
+
     takeTurn(cords, board) {
         board.receiveAttack(cords)
     }
 
 }
 
-module.exports = Player
+export default Player

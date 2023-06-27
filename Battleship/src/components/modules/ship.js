@@ -1,8 +1,9 @@
-function createShip(size) {
+function createShip(size, orientation) {
     return {
         length: size,
         hits: 0,
         sunk: false,
+        orientation: orientation,
         hit() {
             this.hits++;
             this.isSunk()
